@@ -1,25 +1,20 @@
 // import React from 'react';
 import { Post } from './Post';
-
-interface PostData {
-    id: number;
-    content: string;
-    likes: number;
-}
+import { PostData, WordData} from '../types/types';
 
 interface PostsProps {
     posts: PostData[];
-    onClickLike: (id: number) => void;
+    addToMyWords: (word: WordData) => void;
+    handleLike: (post: PostData) => void;
 }
 
 
-export const Posts: React.FC<PostsProps> = ({posts, onClickLike}) => {
-
+export const Posts: React.FC<PostsProps> = ({posts, addToMyWords, handleLike}) => {
     return (
         <>
-            <div>ここにpostを表示</div>
-            {posts.map(post => (
-                <Post key={post.id} post={post} onClickLike={onClickLike}/>
+            {/* <div>ここにpostを表示</div> */}
+            {posts.map((post, index) => (
+                <Post key={index} post={post} addToMyWords={addToMyWords} handleLike={handleLike}/>
             ))}
         </>
     );
